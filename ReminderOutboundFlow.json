@@ -1,0 +1,359 @@
+{
+  "Version": "2019-10-30",
+  "StartAction": "6a2b6b40-7882-4dcf-b7a9-94304073b278",
+  "Metadata": {
+    "entryPointPosition": {
+      "x": 40,
+      "y": 40
+    },
+    "ActionMetadata": {
+      "81d076c8-dc07-4b90-adbe-eb187e56a80b": {
+        "position": {
+          "x": 1041.6,
+          "y": 174.4
+        },
+        "parameters": {
+          "LambdaFunctionARN": {
+            "displayName": "ProcessConnectResponse-Godson"
+          }
+        },
+        "dynamicMetadata": {}
+      },
+      "fd9cfe3f-ab28-4a2f-be87-002dddb31a21": {
+        "position": {
+          "x": 740.8,
+          "y": 234.4
+        },
+        "dynamicParams": []
+      },
+      "6a2b6b40-7882-4dcf-b7a9-94304073b278": {
+        "position": {
+          "x": 166.4,
+          "y": 142.4
+        }
+      },
+      "e34438df-5da3-4e79-8692-4fa37d0dd92b": {
+        "position": {
+          "x": 455.2,
+          "y": 31.2
+        },
+        "conditionMetadata": [
+          {
+            "id": "9c1b4687-8488-4553-bdb5-39a788ff6203",
+            "value": "1"
+          },
+          {
+            "id": "bf10f1fc-b1ac-4ee4-bd83-76eea770efd8",
+            "value": "2"
+          }
+        ]
+      },
+      "001a1e37-70fe-4308-a593-ca3ed3ff36ef": {
+        "position": {
+          "x": 1618.4,
+          "y": 42.4
+        }
+      },
+      "9eb32050-dfc7-4230-be07-92d5be15495a": {
+        "position": {
+          "x": 477.6,
+          "y": 435.2
+        }
+      },
+      "9dce17ba-9d90-4973-bc2c-1b5d9ed5d2a4": {
+        "position": {
+          "x": 735.2,
+          "y": 36
+        },
+        "dynamicParams": []
+      },
+      "29855038-070b-4f6a-a1d8-d951e69bf699": {
+        "position": {
+          "x": 740,
+          "y": 471.2
+        }
+      },
+      "537cf99a-f738-4309-8b3b-d088c0f92bd1": {
+        "position": {
+          "x": 2010.4,
+          "y": 244
+        }
+      },
+      "08b06c8b-09b8-4e1c-9a72-2719d4e059a1": {
+        "position": {
+          "x": 1251.2,
+          "y": 190.4
+        },
+        "conditions": [],
+        "conditionMetadata": [
+          {
+            "id": "67fde0c8-b156-4dec-b45d-a669b1558dfc",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "Reschedule"
+          },
+          {
+            "id": "47c1fcd4-7315-45a8-b606-cbabb4dba09c",
+            "operator": {
+              "name": "Equals",
+              "value": "Equals",
+              "shortDisplay": "="
+            },
+            "value": "Confirmed"
+          }
+        ]
+      },
+      "e2fd1b34-e836-4d38-a3ab-a1884245a32f": {
+        "position": {
+          "x": 1625.6,
+          "y": 420.8
+        }
+      }
+    },
+    "Annotations": [],
+    "name": "ReminderOutboundFlow-Godson",
+    "description": "",
+    "type": "contactFlow",
+    "status": "PUBLISHED",
+    "hash": {}
+  },
+  "Actions": [
+    {
+      "Parameters": {
+        "LambdaFunctionARN": "arn:aws:lambda:us-east-1:992382675149:function:ProcessConnectResponse-Godson",
+        "InvocationTimeLimitSeconds": "3",
+        "ResponseValidation": {
+          "ResponseType": "STRING_MAP"
+        }
+      },
+      "Identifier": "81d076c8-dc07-4b90-adbe-eb187e56a80b",
+      "Type": "InvokeLambdaFunction",
+      "Transitions": {
+        "NextAction": "08b06c8b-09b8-4e1c-9a72-2719d4e059a1",
+        "Errors": [
+          {
+            "NextAction": "08b06c8b-09b8-4e1c-9a72-2719d4e059a1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "userResponse": "2"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "fd9cfe3f-ab28-4a2f-be87-002dddb31a21",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "81d076c8-dc07-4b90-adbe-eb187e56a80b",
+        "Errors": [
+          {
+            "NextAction": "81d076c8-dc07-4b90-adbe-eb187e56a80b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "FlowLoggingBehavior": "Enabled"
+      },
+      "Identifier": "6a2b6b40-7882-4dcf-b7a9-94304073b278",
+      "Type": "UpdateFlowLoggingBehavior",
+      "Transitions": {
+        "NextAction": "e34438df-5da3-4e79-8692-4fa37d0dd92b"
+      }
+    },
+    {
+      "Parameters": {
+        "StoreInput": "False",
+        "InputTimeLimitSeconds": "5",
+        "SSML": "<speak>\n  You have an appointment on \n  <say-as interpret-as=\"date\" format=\"ymd\">{$.Attributes.appointment_date}</say-as>.\n  <break time=\"500ms\"/>\n  Press <say-as interpret-as=\"digits\">1</say-as> to confirm, \n  or press <say-as interpret-as=\"digits\">2</say-as> to reschedule.\n</speak>\n"
+      },
+      "Identifier": "e34438df-5da3-4e79-8692-4fa37d0dd92b",
+      "Type": "GetParticipantInput",
+      "Transitions": {
+        "NextAction": "9eb32050-dfc7-4230-be07-92d5be15495a",
+        "Conditions": [
+          {
+            "NextAction": "9dce17ba-9d90-4973-bc2c-1b5d9ed5d2a4",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "1"
+              ]
+            }
+          },
+          {
+            "NextAction": "fd9cfe3f-ab28-4a2f-be87-002dddb31a21",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "2"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "9eb32050-dfc7-4230-be07-92d5be15495a",
+            "ErrorType": "InputTimeLimitExceeded"
+          },
+          {
+            "NextAction": "9eb32050-dfc7-4230-be07-92d5be15495a",
+            "ErrorType": "NoMatchingCondition"
+          },
+          {
+            "NextAction": "9eb32050-dfc7-4230-be07-92d5be15495a",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "<speak>\n  Thanks for your response.\n  <break time=\"300ms\"/>\n  One of our team members will reach out shortly to help you reschedule your appointment.\n</speak>\n"
+      },
+      "Identifier": "001a1e37-70fe-4308-a593-ca3ed3ff36ef",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "537cf99a-f738-4309-8b3b-d088c0f92bd1",
+        "Errors": [
+          {
+            "NextAction": "537cf99a-f738-4309-8b3b-d088c0f92bd1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "LoopCount": "2"
+      },
+      "Identifier": "9eb32050-dfc7-4230-be07-92d5be15495a",
+      "Type": "Loop",
+      "Transitions": {
+        "NextAction": "29855038-070b-4f6a-a1d8-d951e69bf699",
+        "Conditions": [
+          {
+            "NextAction": "e34438df-5da3-4e79-8692-4fa37d0dd92b",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "ContinueLooping"
+              ]
+            }
+          },
+          {
+            "NextAction": "29855038-070b-4f6a-a1d8-d951e69bf699",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "DoneLooping"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "Attributes": {
+          "userResponse": "1"
+        },
+        "TargetContact": "Current"
+      },
+      "Identifier": "9dce17ba-9d90-4973-bc2c-1b5d9ed5d2a4",
+      "Type": "UpdateContactAttributes",
+      "Transitions": {
+        "NextAction": "81d076c8-dc07-4b90-adbe-eb187e56a80b",
+        "Errors": [
+          {
+            "NextAction": "81d076c8-dc07-4b90-adbe-eb187e56a80b",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "<speak>\n  Sorry, we couldn't process your input.\n  <break time=\"400ms\"/>\n  Your appointment will proceed as scheduled.\n</speak>\n"
+      },
+      "Identifier": "29855038-070b-4f6a-a1d8-d951e69bf699",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "9dce17ba-9d90-4973-bc2c-1b5d9ed5d2a4",
+        "Errors": [
+          {
+            "NextAction": "9dce17ba-9d90-4973-bc2c-1b5d9ed5d2a4",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {},
+      "Identifier": "537cf99a-f738-4309-8b3b-d088c0f92bd1",
+      "Type": "DisconnectParticipant",
+      "Transitions": {}
+    },
+    {
+      "Parameters": {
+        "ComparisonValue": "$.External.responseStatus"
+      },
+      "Identifier": "08b06c8b-09b8-4e1c-9a72-2719d4e059a1",
+      "Type": "Compare",
+      "Transitions": {
+        "NextAction": "e2fd1b34-e836-4d38-a3ab-a1884245a32f",
+        "Conditions": [
+          {
+            "NextAction": "001a1e37-70fe-4308-a593-ca3ed3ff36ef",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "Reschedule"
+              ]
+            }
+          },
+          {
+            "NextAction": "e2fd1b34-e836-4d38-a3ab-a1884245a32f",
+            "Condition": {
+              "Operator": "Equals",
+              "Operands": [
+                "Confirmed"
+              ]
+            }
+          }
+        ],
+        "Errors": [
+          {
+            "NextAction": "e2fd1b34-e836-4d38-a3ab-a1884245a32f",
+            "ErrorType": "NoMatchingCondition"
+          }
+        ]
+      }
+    },
+    {
+      "Parameters": {
+        "SSML": "<speak>\n  Great! Your appointment is confirmed.\n  <break time=\"300ms\"/>\n  We’ll be happy to see you then.\n</speak>\n"
+      },
+      "Identifier": "e2fd1b34-e836-4d38-a3ab-a1884245a32f",
+      "Type": "MessageParticipant",
+      "Transitions": {
+        "NextAction": "537cf99a-f738-4309-8b3b-d088c0f92bd1",
+        "Errors": [
+          {
+            "NextAction": "537cf99a-f738-4309-8b3b-d088c0f92bd1",
+            "ErrorType": "NoMatchingError"
+          }
+        ]
+      }
+    }
+  ]
+}
