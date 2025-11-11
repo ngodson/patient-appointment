@@ -72,5 +72,7 @@ AccessDeniedException	Lambda missing permissions	Add AmazonConnect_FullAccess po
 
 
 <img width="1612" height="846" alt="Screenshot 2025-11-11 at 21 49 00" src="https://github.com/user-attachments/assets/9d2f954b-5196-48d3-b4a0-17181445bd52" />
-<img width="1612" height="817" alt="Screenshot 2025-11-11 at 21 50 14" src="https://github.com/user-attachments/assets/877d9e78-e926-4711-b2a0-bb7598b50b41" />
+<img width="1612" height="817" alt="Screensho<img width="1612" height="817" alt="Screenshot 2025-11-11 at 21 54 00" src="https://github.com/user-attachments/assets/e0062104-dcef-4499-b62c-699bb5401b70" />
+t 2025-11-11 at 21 50 14" src="https://github.com/user-attachments/assets/877d9e78-e926-4711-b2a0-bb7598b50b41" />
 <img width="1612" height="846" alt="Screenshot 2025-11-11 at 21 49 00" src="https://github.com/user-attachments/assets/c29e95e2-09b6-4d14-9d9b-b2e791b8487d" />
+
